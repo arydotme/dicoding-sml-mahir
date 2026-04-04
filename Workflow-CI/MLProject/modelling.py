@@ -11,6 +11,9 @@ import mlflow.sklearn
 # Menggunakan data_clean.csv sesuai permintaan awal
 df = pd.read_csv('data_clean.csv', encoding='latin1')
 
+# Hapus baris yang memiliki nilai NaN pada kolom teks atau label
+df = df.dropna(subset=['clean_text', 'label'])
+
 # Pastikan nama kolom sesuai (disesuaikan dengan gambaran Anda)
 X = df['clean_text']   # hasil cleaning
 y = df['label']
