@@ -9,7 +9,7 @@ import mlflow
 import mlflow.sklearn
 # 1. Load Dataset
 # Menggunakan data_clean.csv sesuai permintaan awal
-df = pd.read_csv('Membangun_model/data_clean.csv')
+df = pd.read_csv('../Membangun_model/data_clean.csv')
 
 # Pastikan nama kolom sesuai (disesuaikan dengan gambaran Anda)
 X = df['clean_text']   # hasil cleaning
