@@ -29,7 +29,7 @@ jobs:
           
       - name: Run MLflow project
         run: |
-          mlflow run Membangun_model
+          mlflow run Membangun_model --env-manager local
 
       - name: Get latest MLflow run_id
         run: |
