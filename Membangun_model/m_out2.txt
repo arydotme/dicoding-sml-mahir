@@ -1,0 +1,2 @@
+<class 'pandas.core.frame.DataFrame'>
+Index(['tweet', 'label', 'clean_text'], dtype='object')
