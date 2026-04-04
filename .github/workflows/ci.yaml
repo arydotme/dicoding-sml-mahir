@@ -29,8 +29,9 @@ jobs:
 
       - name: Run MLflow project
         run: |
+          export MLFLOW_TRACKING_URI=file:./Workflow-CI/MLProject/mlruns
           mlflow run Workflow-CI/MLProject --env-manager local
 
-      - name: Get latest MLflow run_id
+      - name: Check mlruns folder
         run: |
-          ls mlruns
+          ls Workflow-CI/MLProject/mlruns
