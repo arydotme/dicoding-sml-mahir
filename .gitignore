@@ -1,2 +1,2 @@
-*.csv
 *.png
+!Workflow-CI/MLProject/data_clean.csv
