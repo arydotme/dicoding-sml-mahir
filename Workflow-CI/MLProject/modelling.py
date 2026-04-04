@@ -30,13 +30,13 @@ X_train_tfidf = tfidf.fit_transform(X_train)
 X_test_tfidf = tfidf.transform(X_test)
 
 # 4. Inisialisasi MLflow
-mlflow.set_tracking_uri("http://127.0.0.1:5000/")
-mlflow.set_experiment("Hoax Detection Experiment")
+mlflow.set_tracking_uri("sqlite:///mlruns.db")
+mlflow.set_experiment("Hoax_Detection_Experiment")
 
 # Menggunakan autolog dari MLflow untuk Scikit-Learn
 mlflow.sklearn.autolog()
 
-with mlflow.start_run(run_name="SVM Linear Training"):
+with mlflow.start_run(run_name="SVM_Linear_Training"):
     # 5. SVM
     model = SVC(kernel='linear')
     
