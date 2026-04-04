@@ -1,0 +1,36 @@
+name: workflow-ci
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Check Env
+        run: |
+          python --version
+          pip --version
+
+      - name: Install dependencies
+        run: |
+          pip install mlflow
+          pip install -r Membangun_model/requirements.txt
+
+      - name: Run MLflow project
+        run: |
+          mlflow run Workflow-CI/MLProject --env-manager local
+
+      - name: Get latest MLflow run_id
+        run: |
+          ls mlruns

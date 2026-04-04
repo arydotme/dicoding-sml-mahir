@@ -9,7 +9,7 @@ import mlflow
 import mlflow.sklearn
 # 1. Load Dataset
 # Menggunakan data_clean.csv sesuai permintaan awal
-df = joblib.load('data_clean.csv')
+df = pd.read_csv('data_clean.csv')
 
 # Pastikan nama kolom sesuai (disesuaikan dengan gambaran Anda)
 X = df['clean_text']   # hasil cleaning
@@ -30,7 +30,6 @@ X_train_tfidf = tfidf.fit_transform(X_train)
 X_test_tfidf = tfidf.transform(X_test)
 
 # 4. Inisialisasi MLflow
-mlflow.set_tracking_uri("http://127.0.0.1:5000/")
 mlflow.set_experiment("Hoax Detection Experiment")
 
 # Menggunakan autolog dari MLflow untuk Scikit-Learn
