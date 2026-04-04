@@ -4,7 +4,6 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.svm import SVC
 from sklearn.metrics import classification_report, accuracy_score, confusion_matrix, ConfusionMatrixDisplay, precision_score, recall_score, f1_score
 import matplotlib.pyplot as plt
-import joblib
 import mlflow
 import mlflow.sklearn
 # 1. Load Dataset
