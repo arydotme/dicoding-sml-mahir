@@ -40,34 +40,33 @@ tfidf = TfidfVectorizer(max_features=5000)
 X_train_tfidf = tfidf.fit_transform(X_train)
 X_test_tfidf = tfidf.transform(X_test)
 
-mlflow.set_experiment("Hoax Detection Experiment")
 mlflow.sklearn.autolog()
 
-with mlflow.start_run(run_name="SVM Linear Training"):
-    model = SVC(kernel='linear')
-    model.fit(X_train_tfidf,y_train)
-    y_pred = model.predict(X_test_tfidf)
+model = SVC(kernel='linear')
+model.fit(X_train_tfidf,y_train)
 
-    acc_score = accuracy_score(y_test,y_pred)
-    prec_score = precision_score(y_test,y_pred,average='weighted')
-    rec_score = recall_score(y_test,y_pred,average='weighted')
-    f1 = f1_score(y_test,y_pred,average='weighted')
+y_pred = model.predict(X_test_tfidf)
 
-    print("Accuracy:",acc_score)
-    print(classification_report(y_test,y_pred))
+acc_score = accuracy_score(y_test,y_pred)
+prec_score = precision_score(y_test,y_pred,average='weighted')
+rec_score = recall_score(y_test,y_pred,average='weighted')
+f1 = f1_score(y_test,y_pred,average='weighted')
 
-    cm = confusion_matrix(y_test,y_pred)
+print("Accuracy:",acc_score)
+print(classification_report(y_test,y_pred))
 
-    mlflow.log_metrics({
-        "test_accuracy":acc_score,
-        "test_precision":prec_score,
-        "test_recall":rec_score,
-        "test_f1_score":f1
-    })
+cm = confusion_matrix(y_test,y_pred)
 
-    disp = ConfusionMatrixDisplay(confusion_matrix=cm,display_labels=model.classes_)
-    disp.plot()
-    plt.savefig('confusion_matrix_svm.png')
-    plt.close()
+mlflow.log_metrics({
+    "test_accuracy":acc_score,
+    "test_precision":prec_score,
+    "test_recall":rec_score,
+    "test_f1_score":f1
+})
 
-    mlflow.log_artifact('confusion_matrix_svm.png')
+disp = ConfusionMatrixDisplay(confusion_matrix=cm,display_labels=model.classes_)
+disp.plot()
+plt.savefig('confusion_matrix_svm.png')
+plt.close()
+
+mlflow.log_artifact('confusion_matrix_svm.png')
